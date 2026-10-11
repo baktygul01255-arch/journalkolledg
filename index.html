@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Учебный журнал — физика и математика</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(145deg,#edf3fc,#f9fbff);color:#15273d;font:15px/1.55 system-ui,"Segoe UI",Arial,sans-serif}.panel{width:min(490px,100%);background:white;border:1px solid #dbe4f0;border-radius:22px;padding:30px;box-shadow:0 15px 45px #233f6e1b}.logo{display:grid;place-items:center;width:52px;height:52px;background:#225dcf;color:#fff;border-radius:14px;font-size:28px;font-weight:bold}h1{font-size:25px;letter-spacing:-.025em;line-height:1.22;margin:20px 0 9px}p{color:#5c6f87;margin:7px 0 18px}.button{display:inline-block;width:100%;text-align:center;padding:12px 18px;background:#225dcf;color:white;border-radius:10px;font-weight:750;text-decoration:none;border:0;cursor:pointer}.button:hover{background:#1749a5}.message{background:#f2f6fd;border:1px solid #dbe6f4;border-radius:10px;padding:14px;margin:16px 0;color:#485f7d;font-size:13px}code{overflow-wrap:anywhere;color:#1d54ae}.steps{padding-left:22px;font-size:13px;color:#435671}.mini{font-size:12px;color:#74849b;margin-top:19px}
+</style>
+</head>
+<body>
+<main class="panel">
+<div class="logo">∑</div>
+<h1>Электронный журнал</h1>
+<p>Физика и математика · отделения · группы · еженедельные баллы · аттестация · семестр</p>
+<div id="msg" class="message">Загрузка ссылки на защищённый журнал…</div>
+<a class="button" id="open" href="#" hidden>Открыть журнал</a>
+<div id="setup" hidden>
+  <ol class="steps">
+    <li>Создайте Google Таблицу и добавьте <b>Code.gs</b> и <b>Journal.html</b> в редактор Apps Script.</li>
+    <li>Запустите <code>setupJournal</code>, сохраните полученный код преподавателя.</li>
+    <li>Опубликуйте скрипт как веб-приложение и скопируйте ссылку, заканчивающуюся на <code>/exec</code>.</li>
+    <li>Замените значение <code>APP_SCRIPT_URL</code> в этом файле на полученную ссылку и загрузите его в GitHub Pages как <code>index.html</code>.</li>
+  </ol>
+</div>
+<div class="mini">Персональные данные студентов не размещаются в репозитории GitHub. Доступ к ним открывается по личному коду преподавателя.</div>
+</main>
+<script>
+// ВСТАВЬТЕ сюда только опубликованный URL веб-приложения (НЕ секретный код!):
+const APP_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyb4zHym631Q9dMZge1HhmVy707jNpXuyB1iCh_rIDaKVVB_Yl3UNz1G7R_889t-Oj_/exec';
+const valid=/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec(?:\?.*)?$/.test(APP_SCRIPT_URL);
+const msg=document.getElementById('msg'),open=document.getElementById('open');
+if(valid){msg.textContent='Открываем электронный журнал с защищённым входом преподавателя…';open.href=APP_SCRIPT_URL;open.hidden=false;setTimeout(()=>window.location.replace(APP_SCRIPT_URL),800);}
+else{msg.textContent='Для первого запуска потребуется однократная настройка. После неё эта ссылка будет открывать журнал автоматически.';document.getElementById('setup').hidden=false;}
+</script>
+</body>
+</html>
